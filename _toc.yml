@@ -7,3 +7,5 @@ chapters:
 - file: tsa-notebooks/components
 - file: tsa-notebooks/stationarity
 - file: tsa-notebooks/movingavg
+- file: ml-notebooks/primer
+- file: ml-notebooks/classifier
