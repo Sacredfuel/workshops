@@ -1,0 +1,1210 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Stationarity &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tsa-notebooks/stationarity';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Moving Average" href="movingavg.html" />
+    <link rel="prev" title="Introduction to Time Series Analysis" href="components.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Data Week Day 4
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="components.html">Introduction to Time Series Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Stationarity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="movingavg.html">Moving Average</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftsa-notebooks/stationarity.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tsa-notebooks/stationarity.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Stationarity</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-care-about-stationarity">Why do we care about stationarity?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-stationarity">What is stationarity?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelation">Autocorrelation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-stationary-and-nonstationary-time-series">Common stationary and nonstationary time series</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#white-noise">White noise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-walk">Random walk</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-with-trend">Time series with trend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-with-seasonality">Time series with seasonality</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detecting-stationarity">Detecting stationarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-dickey-fuller-test">Augmented Dickey-Fuller Test</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-data-adf">Stationary Data &amp; ADF</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adf-on-time-series-with-trend">ADF on time series with trend</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adf-on-random-walk">ADF on random walk</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-transformations-to-achieve-stationarity">Common transformations to achieve stationarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtract-estimated-trend-seasonality">Subtract estimated trend &amp; seasonality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seasonal-differentiation">Seasonal differentiation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="stationarity">
+<h1>Stationarity<a class="headerlink" href="#stationarity" title="Link to this heading">#</a></h1>
+<p>In this section we will cover</p>
+<ul class="simple">
+<li><p>Definition of stationarity and examples of common stationary and nonstationary time series.</p></li>
+<li><p>How to detect stationarity.</p></li>
+<li><p>The most common ways to transform nonstationary time series into stationary ones.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.arima_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArmaProcess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.stattools</span><span class="w"> </span><span class="kn">import</span> <span class="n">adfuller</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.seasonal</span><span class="w"> </span><span class="kn">import</span> <span class="n">seasonal_decompose</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span> <span class="c1"># Reproducibility</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">quad</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<section id="why-do-we-care-about-stationarity">
+<h2>Why do we care about stationarity?<a class="headerlink" href="#why-do-we-care-about-stationarity" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Stationarity is a key assumption to time series analysis.</p></li>
+<li><p>Without it many basic time series models would break.</p></li>
+<li><p>Transformations can be applied to convert a nonstationary time series to a stationary one.</p></li>
+</ul>
+</section>
+<section id="what-is-stationarity">
+<h2>What is stationarity?<a class="headerlink" href="#what-is-stationarity" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Intuition: a time series is stationary when there are no changes in the underlying system that generates it.</p></li>
+<li><p>We define it to be:</p>
+<ul>
+<li><p>Constant mean (no trend).</p></li>
+<li><p>Constant variance (no heteroskedasticity).</p></li>
+<li><p>Constant autocorrelation structure.</p></li>
+<li><p>No periodic component.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Let’s create an utility function to make plots.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_sequence_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Values&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>First, we create a variable <code class="docutils literal notranslate"><span class="pre">time</span></code> that defines equally-spaced time intervals.</p></li>
+<li><p>Then we’ll sample values from a Normal distribution with a mean of 0 and a standard deviation of 1.</p></li>
+<li><p>Essentially we’re creating white noise, which is a stationary time series as it exhibits all the properties required of a stationary time series.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">stationary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">stationary</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Stationary TS&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">stationary</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mean&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">stationary</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">stationary</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span> 
+                <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">stationary</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">stationary</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span> 
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;std&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c8c9faf3a361aa37c8ad60dbc660eb23294465f047c15d0c9ce92a8fe73ad367.png" src="../_images/c8c9faf3a361aa37c8ad60dbc660eb23294465f047c15d0c9ce92a8fe73ad367.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>We can easily check that the white noise has constant mean, constant variance, and no periodicity.</p></li>
+<li><p>What about the autocorrelation?</p></li>
+</ul>
+<section id="autocorrelation">
+<h3>Autocorrelation<a class="headerlink" href="#autocorrelation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Autocorrelation measures how much the current time series measurement is correlated with a past measurement.</p></li>
+<li><p>For example, today’s temperature is often highly correlated with yesterday’s temperature.</p></li>
+<li><p>To discuss these things we must introduce the idea of a <em>lag</em>, i.e., a delay.</p></li>
+</ul>
+<p><img alt="Autocorrelation" src="../_images/Autocorrelation.gif" /></p>
+<ul class="simple">
+<li><p>Say you wanted to know if today’s temperature correlates more with yesterday’s temperature or the temperature from two days ago.</p></li>
+<li><p>You could test this by computing the correlation between the original time series and the same series delayed 1 time step.</p></li>
+<li><p>The second value of the original time series would be compared with the first of the delayed time series.</p></li>
+<li><p>The third original value would be compared with the second of the delayed.</p></li>
+<li><p>And so on.</p></li>
+</ul>
+<p>Autocorrelation often results in a pattern, whereas a time series without autocorrelation looks random.</p>
+<p><strong>Example: constant autocorrelation</strong></p>
+<ul class="simple">
+<li><p>Time series of daily temperature in a specific location over a year.</p></li>
+<li><p>If this location has a very stable climate, the day-to-day changes in temperature might be minimal and consistent throughout the year.</p></li>
+<li><p>Then, the autocorrelation would be relatively constant.</p></li>
+<li><p>E.g., the correlation between today’s temperature and tomorrow’s temperature is roughly the same as the correlation between the temperature 30 days ago and 29 days ago.</p></li>
+</ul>
+<p><strong>Example: time-varying autocorrelation</strong></p>
+<ul class="simple">
+<li><p>Time series representing the daily stock prices of a particular company.</p></li>
+<li><p>Stock prices can be influenced by market trends, company performance, economic indicators, world events, etc…</p></li>
+<li><p>Here, the autocorrelation might be time-dependent.</p></li>
+<li><p>E.g., during a period of market stability, the stock prices might show a consistent pattern over time (e.g., a steady increase).</p></li>
+<li><p>However, during a market upheaval or a significant company event (like a product launch or a scandal), the pattern could change dramatically.</p></li>
+</ul>
+</section>
+</section>
+<section id="common-stationary-and-nonstationary-time-series">
+<h2>Common stationary and nonstationary time series<a class="headerlink" href="#common-stationary-and-nonstationary-time-series" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>If the analytic expression of the time series is known, it is possible to check the conditions for stationarity.</p></li>
+<li><p>In practice, the process generating the time series might be unknown and we’ll need other tools to check stationarity.</p></li>
+<li><p>Starting the analysis by looking at the <code class="docutils literal notranslate"><span class="pre">run_sequence_plot</span></code> is an excellent starting point.</p></li>
+</ul>
+<section id="white-noise">
+<h3>White noise<a class="headerlink" href="#white-noise" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We already looked at this time series and conclude that mean and variance are constant and there is no seasonal component.</p></li>
+<li><p>In addition, since the value of each time step is drawn independently, there is no correlation.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">stationary</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;White noise&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2c36b996cd2e93f5bf155c99c673f88165325d2f882f59213afe078793586483.png" src="../_images/2c36b996cd2e93f5bf155c99c673f88165325d2f882f59213afe078793586483.png" />
+</div>
+</div>
+</section>
+<section id="random-walk">
+<h3>Random walk<a class="headerlink" href="#random-walk" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The random walk is one of the most important <strong>nonstationary</strong> time series.</p></li>
+<li><p>It is defined as:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(t) = X(t-1) + \epsilon_t\]</div>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(\epsilon_t\)</span> are the steps and sampled randomly.</p></li>
+<li><p>Let’s create a random walk.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seed</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">rand_walk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time</span><span class="p">:</span>
+    <span class="n">rand_walk</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">seed</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="n">rand_walk</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">rand_walk</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Random Walk&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a68bfce572610dc587a93b260cab941d371a40f4702fb4b04f7c5ec8869c271e.png" src="../_images/a68bfce572610dc587a93b260cab941d371a40f4702fb4b04f7c5ec8869c271e.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Notice how the current value is highly correlated with the past values and fluctuates much less than the white noise.</p></li>
+<li><p>The random walk is nonstationary.</p></li>
+</ul>
+</section>
+<section id="time-series-with-trend">
+<h3>Time series with trend<a class="headerlink" href="#time-series-with-trend" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Consider the following data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trend</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">*</span> <span class="mf">2.75</span><span class="p">)</span> <span class="o">+</span> <span class="n">stationary</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Nonstationary data with trend&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7b35552763a957fc0f7cae5e5620cf1ddc4aeb81791d64e9f183692a018e9936.png" src="../_images/7b35552763a957fc0f7cae5e5620cf1ddc4aeb81791d64e9f183692a018e9936.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Is this data stationary?</p></li>
+</ul>
+<ul class="simple">
+<li><p>No, the mean changes over time (i.e. there is a trend)</p></li>
+</ul>
+</section>
+<section id="time-series-with-seasonality">
+<h3>Time series with seasonality<a class="headerlink" href="#time-series-with-seasonality" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seasonality</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">time</span><span class="o">/</span><span class="mi">24</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Time series with seasonality&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/71395589a2ef3b4d5b67a906ad62c42ec8659499812d146f5148dccca2943669.png" src="../_images/71395589a2ef3b4d5b67a906ad62c42ec8659499812d146f5148dccca2943669.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Is this time series stationary?</p></li>
+</ul>
+<ul class="simple">
+<li><p>The mean of a periodic signal over a complete cycle always assumes the same value (<code class="docutils literal notranslate"><span class="pre">10</span></code> in our case).</p></li>
+<li><p>However, over an half-cycle or any period not equal to an integer multiple of the full cycle, the mean changes (is different from <code class="docutils literal notranslate"><span class="pre">10</span></code>).</p></li>
+<li><p>This indicates that the mean is not constant over time</p></li>
+</ul>
+<p><img alt="Sin stationary" src="../_images/SinStationary.gif" /></p>
+</section>
+</section>
+<section id="detecting-stationarity">
+<h2>Detecting stationarity<a class="headerlink" href="#detecting-stationarity" title="Link to this heading">#</a></h2>
+<p>Next, we will talk about some techniques used to identify if a time series is stationary or not.</p>
+<p>Specifically, we will focus on the Augmented Dickey-Fuller Test.</p>
+<section id="augmented-dickey-fuller-test">
+<h3>Augmented Dickey-Fuller Test<a class="headerlink" href="#augmented-dickey-fuller-test" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>This is a statistical procedure to determine whether a time series is stationary or not.</p></li>
+<li><p>We will discuss more details about the test in the next lectures.</p></li>
+<li><p>For now, that’s what we need to know:</p>
+<ol class="arabic simple">
+<li><p><strong>Null hypothesis:</strong> <span class="math notranslate nohighlight">\(H_0\)</span>: the series is nonstationary.</p></li>
+<li><p><strong>Alternative hypothesis:</strong> <span class="math notranslate nohighlight">\(H_A\)</span>: the series is stationary.</p></li>
+</ol>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Like any statistical test you should set a significance level or threshold that determines whether you should accept or reject the null.</p></li>
+<li><p>The values <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> or <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>, which yield a confidence of <span class="math notranslate nohighlight">\(95\%\)</span> and <span class="math notranslate nohighlight">\(99\%\)</span>, respectively, are common choices.</p></li>
+</ul>
+<p>Example: <span class="math notranslate nohighlight">\(p = 0.0001 \rightarrow\)</span> reject <span class="math notranslate nohighlight">\(H_0 \rightarrow\)</span> the time series is stationary</p>
+<p>Example: <span class="math notranslate nohighlight">\(p = 0.43 \rightarrow\)</span> fail to reject <span class="math notranslate nohighlight">\(H_0 \rightarrow\)</span> the time series is non-stationary</p>
+<section id="stationary-data-adf">
+<h4>Stationary Data &amp; ADF<a class="headerlink" href="#stationary-data-adf" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Let’s see how to run this test in Python.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adf</span><span class="p">,</span> <span class="n">pvalue</span><span class="p">,</span> <span class="n">usedlag</span><span class="p">,</span> <span class="n">nobs</span><span class="p">,</span> <span class="n">critical_values</span><span class="p">,</span> <span class="n">icbest</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">stationary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Let’s see and comment the main outputs from the ADF test.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ADF: </span><span class="si">{</span><span class="n">adf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADF: -14.74
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>First, <code class="docutils literal notranslate"><span class="pre">adf</span></code> is the value of the test statistic.</p></li>
+<li><p>The more negative the value, the more confident we can be that the series is stationary.</p></li>
+<li><p>Here we see a negative value.</p></li>
+<li><p>That may not mean anything to you just yet but <code class="docutils literal notranslate"><span class="pre">pvalue</span></code> should.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">pvalue</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p-value: 2.543125112212854e-27
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">pvalue</span></code> is interpreted like any p-value.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">pvalue</span></code> should be compared with the confidence levels (e.g., <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> or <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>).</p></li>
+<li><p>Based on the comparison, we reject or fail to reject <span class="math notranslate nohighlight">\(H_0\)</span>.</p></li>
+<li><p>Here <code class="docutils literal notranslate"><span class="pre">pvalue</span></code> is very close to zero so we <strong>reject</strong> the <span class="math notranslate nohighlight">\(H_0\)</span> in favor of <span class="math notranslate nohighlight">\(H_A\)</span> and conclude that the time series is stationary.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nobs: </span><span class="si">{</span><span class="n">nobs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nobs: 199
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The variable <code class="docutils literal notranslate"><span class="pre">nobs</span></code> is simply the number of observations in the time series.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;critical values: </span><span class="si">{</span><span class="n">critical_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>critical values: {&#39;1%&#39;: np.float64(-3.4636447617687436), &#39;5%&#39;: np.float64(-2.8761761179270766), &#39;10%&#39;: np.float64(-2.57457158581854)}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Finally, <code class="docutils literal notranslate"><span class="pre">critical_values</span></code> are the test statistic thresholds for common significant levels.</p></li>
+<li><p>Here we see a test statistic lower than -2.87 is sufficient to reject <span class="math notranslate nohighlight">\(H_0\)</span> at a significance level of 5%.</p></li>
+</ul>
+<ul class="simple">
+<li><p>You may have noticed two outputs we didn’t discuss.</p></li>
+<li><p>See <a class="reference external" href="http://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.adfuller.html">statsmodels docs</a> for a description of <code class="docutils literal notranslate"><span class="pre">usedlag</span></code> and <code class="docutils literal notranslate"><span class="pre">icbest</span></code>.</p></li>
+</ul>
+</section>
+<section id="adf-on-time-series-with-trend">
+<h4>ADF on time series with trend<a class="headerlink" href="#adf-on-time-series-with-trend" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Next, we run the ADF test on the <code class="docutils literal notranslate"><span class="pre">trend</span></code> time series.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adf</span><span class="p">,</span> <span class="n">pvalue</span><span class="p">,</span> <span class="n">usedlag</span><span class="p">,</span> <span class="n">nobs</span><span class="p">,</span> <span class="n">critical_values</span><span class="p">,</span> <span class="n">icbest</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">trend</span><span class="p">,</span> <span class="n">regression</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ADF: </span><span class="si">{</span><span class="n">adf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;critical values: </span><span class="si">{</span><span class="n">critical_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADF: 0.10
+p-value: 0.966
+critical values: {&#39;1%&#39;: np.float64(-3.4654311561944873), &#39;5%&#39;: np.float64(-2.8769570530458792), &#39;10%&#39;: np.float64(-2.574988319755886)}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>As expected, we fail to reject <span class="math notranslate nohighlight">\(H_0\)</span> that the <code class="docutils literal notranslate"><span class="pre">trend</span></code> time series is nonstationary.</p></li>
+</ul>
+</section>
+</section>
+<section id="adf-on-random-walk">
+<h3>ADF on random walk<a class="headerlink" href="#adf-on-random-walk" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Finally, we run the ADF test on the <code class="docutils literal notranslate"><span class="pre">rand_walk</span></code> time series.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adf</span><span class="p">,</span> <span class="n">pvalue</span><span class="p">,</span> <span class="n">usedlag</span><span class="p">,</span> <span class="n">nobs</span><span class="p">,</span> <span class="n">critical_values</span><span class="p">,</span> <span class="n">icbest</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">rand_walk</span><span class="p">,</span> <span class="n">regression</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ADF: </span><span class="si">{</span><span class="n">adf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;critical values: </span><span class="si">{</span><span class="n">critical_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADF: -2.43
+p-value: 0.134
+critical values: {&#39;1%&#39;: np.float64(-3.4638151713286316), &#39;5%&#39;: np.float64(-2.876250632135043), &#39;10%&#39;: np.float64(-2.574611347821651)}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>As we discussed before, the random walk is nonstationary because its variance <span class="math notranslate nohighlight">\(\sigma^2t\)</span> is not constant over time.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="common-transformations-to-achieve-stationarity">
+<h2>Common transformations to achieve stationarity<a class="headerlink" href="#common-transformations-to-achieve-stationarity" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>There are several ways to transform nonstationary time series data:</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Transformation</p></th>
+<th class="head text-left"><p>Effect</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Subtract trend</p></td>
+<td class="text-left"><p>Constant mean</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Apply log</p></td>
+<td class="text-left"><p>Constant variance</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Differencing</p></td>
+<td class="text-left"><p>Remove autocorrelation</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Seasonal differencing</p></td>
+<td class="text-left"><p>Remove periodic component</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Sometimes you’ll have to do multiple transformations on the same dataset.</p></li>
+<li><p>Note that this is just a small subset of the total possible ways to transform nonstationary time series.</p></li>
+<li><p>We’ll focus on subtracting the trend and seasonal differencing for now</p></li>
+</ul>
+<section id="subtract-estimated-trend-seasonality">
+<h3>Subtract estimated trend &amp; seasonality<a class="headerlink" href="#subtract-estimated-trend-seasonality" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trend_seasonality</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">seasonality</span>
+<span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">trend_seasonality</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Time series with trend and seasonality&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fd7b1ad18737e8db06cc767bd00d1fcf5318aa728582a462c60d6793236e8a1f.png" src="../_images/fd7b1ad18737e8db06cc767bd00d1fcf5318aa728582a462c60d6793236e8a1f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adf_b4</span><span class="p">,</span> <span class="n">pvalue_b4</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">trend_seasonality</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ADF: </span><span class="si">{</span><span class="n">adf_b4</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">pvalue_b4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADF: -0.28
+p-value: 0.929
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Nonstationary as expected.</p></li>
+<li><p>Next, we apply the decomposition.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_decomposition</span> <span class="o">=</span> <span class="n">seasonal_decompose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">trend_seasonality</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;additive&#39;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">est_trend</span> <span class="o">=</span> <span class="n">ss_decomposition</span><span class="o">.</span><span class="n">trend</span>
+<span class="n">est_seasonal</span> <span class="o">=</span> <span class="n">ss_decomposition</span><span class="o">.</span><span class="n">seasonal</span>
+<span class="n">est_noise</span> <span class="o">=</span> <span class="n">ss_decomposition</span><span class="o">.</span><span class="n">resid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">est_trend</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trend&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;series&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b75f04d803dce8919010667526457cfaf37fbc416850c95ee0690c29e1a68ea2.png" src="../_images/b75f04d803dce8919010667526457cfaf37fbc416850c95ee0690c29e1a68ea2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">est_seasonal</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Seasonality&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;series&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/aea803f3b4b9fabf1e5254cc074fffeea712d01b1363393a17e84421a7918d44.png" src="../_images/aea803f3b4b9fabf1e5254cc074fffeea712d01b1363393a17e84421a7918d44.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">est_noise</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Noise&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;series&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c3095687475ccf3ba16f9309565db53a7bc16a8cfaafdd85e81213d2b7db23b3.png" src="../_images/c3095687475ccf3ba16f9309565db53a7bc16a8cfaafdd85e81213d2b7db23b3.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Let’s look at the residual values.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est_residual</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est_residual</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[        nan         nan         nan         nan         nan         nan
+         nan         nan         nan         nan         nan         nan
+  0.27211609 -1.19594945 -0.50444018 -0.50638219 -0.51225125 -0.16578987
+ -0.75150172 -0.88957711]
+...
+[ 0.44755405 -0.36391449 -0.11867315  0.16158118 -0.13943343 -0.1707093
+  0.18690891  0.02980826         nan         nan         nan         nan
+         nan         nan         nan         nan         nan         nan
+         nan         nan]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We’ll have to remove the first <span class="math notranslate nohighlight">\(12\)</span> and last <span class="math notranslate nohighlight">\(12\)</span> values to run an ADF test since those are <code class="docutils literal notranslate"><span class="pre">nan</span></code>.</p></li>
+<li><p>The number 12 is due to the fact that the method applies seasonal differencing and we specified <code class="docutils literal notranslate"><span class="pre">period=24</span></code>.</p></li>
+<li><p>Here’s how to do that and run the test all in one call.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adf_after</span><span class="p">,</span> <span class="n">pvalue_after</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">est_noise</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="o">-</span><span class="mi">12</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ADF: </span><span class="si">{</span><span class="n">adf_after</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">pvalue_after</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADF: -6.19
+p-value: 0.000
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Now the time series is stationary</p></li>
+</ul>
+</section>
+<section id="seasonal-differentiation">
+<h3>Seasonal differentiation<a class="headerlink" href="#seasonal-differentiation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Consider a time series with a seasonality of period <span class="math notranslate nohighlight">\(L\)</span>.</p></li>
+<li><p>There will be a strong correlation between <span class="math notranslate nohighlight">\(X(t)\)</span> and <span class="math notranslate nohighlight">\(X(t+L)\)</span>.</p></li>
+<li><p>Seasonal differentiation can remove the seasonality and make the time series stationary:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\hat{X}(t) = X(t+L) - X(t)\]</div>
+<ul class="simple">
+<li><p>After seasonal differencing the time series will become <span class="math notranslate nohighlight">\(L\)</span> steps shorter.</p></li>
+<li><p>Note that we can perform the standard differentiation in cascade to seasonal differentiation if we need to remove also the trend on top of the seasonality.</p></li>
+<li><p>Let’s see this on the <code class="docutils literal notranslate"><span class="pre">trend_seasonality</span></code> time series.</p></li>
+</ul>
+<p><img alt="Seasonal Differencing" src="../_images/SeasonalDifferencing.gif" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trend_seasonality_d24</span> <span class="o">=</span> <span class="p">(</span><span class="n">trend_seasonality</span><span class="p">[:</span><span class="o">-</span><span class="mi">24</span><span class="p">]</span> 
+                         <span class="o">-</span> <span class="n">trend_seasonality</span><span class="p">[</span><span class="mi">24</span><span class="p">:])</span> <span class="c1"># remove seasonality</span>
+<span class="n">trend_seasonality_d24_d1</span> <span class="o">=</span> <span class="p">(</span><span class="n">trend_seasonality_d24</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
+                            <span class="o">-</span> <span class="n">trend_seasonality_d24</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="c1"># remove trend</span>
+
+<span class="c1"># Plot the differenced time series</span>
+<span class="n">run_sequence_plot</span><span class="p">(</span><span class="n">time</span><span class="p">[:</span><span class="o">-</span><span class="mi">25</span><span class="p">],</span> <span class="n">trend_seasonality_d24_d1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Seasonal + 1st order differencing&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/026ebb100c5ac32639182532985295609c1c4cfde1dedce94986b427a11fb4ca.png" src="../_images/026ebb100c5ac32639182532985295609c1c4cfde1dedce94986b427a11fb4ca.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this lecture we learned:</p>
+<ol class="arabic simple">
+<li><p>What does it mean for a time series to be stationary.</p></li>
+<li><p>A set of notable stationary and nonstationary time series.</p></li>
+<li><p>Common tools to identify stationarity.</p></li>
+<li><p>Useful nonstationary-to-stationary transformations.</p></li>
+</ol>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Exercises</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tsa-notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="components.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to Time Series Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="movingavg.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Moving Average</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-care-about-stationarity">Why do we care about stationarity?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-stationarity">What is stationarity?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelation">Autocorrelation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-stationary-and-nonstationary-time-series">Common stationary and nonstationary time series</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#white-noise">White noise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-walk">Random walk</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-with-trend">Time series with trend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-with-seasonality">Time series with seasonality</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detecting-stationarity">Detecting stationarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-dickey-fuller-test">Augmented Dickey-Fuller Test</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-data-adf">Stationary Data &amp; ADF</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adf-on-time-series-with-trend">ADF on time series with trend</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adf-on-random-walk">ADF on random walk</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-transformations-to-achieve-stationarity">Common transformations to achieve stationarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtract-estimated-trend-seasonality">Subtract estimated trend &amp; seasonality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seasonal-differentiation">Seasonal differentiation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
