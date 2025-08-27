@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Neural Networks &#8212; My sample book</title>
+    <title>Neural Networks &#8212; Workshops</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ml-notebooks/classifier';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="A/B Testing" href="abtesting.html" />
     <link rel="prev" title="Introduction to PyTorch" href="primer.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -152,8 +153,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Workshops - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Workshops - Home"/>`);</script>
   
   
 </a></div>
@@ -184,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tsa-notebooks/movingavg.html">Moving Average</a></li>
 <li class="toctree-l1"><a class="reference internal" href="primer.html">Introduction to PyTorch</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abtesting.html">A/B Testing</a></li>
 </ul>
 
     </div>
@@ -230,37 +232,6 @@
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/ml-notebooks/classifier.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -269,7 +240,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/Sacredfuel/workshops" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +257,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fml-notebooks/classifier.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Sacredfuel/workshops/issues/new?title=Issue%20on%20page%20%2Fml-notebooks/classifier.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -491,7 +462,7 @@ document.write(`
 
 <span class="n">test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
     <span class="n">test_set</span><span class="p">,</span>
-    <span class="n">batch_size</span><span class="o">=</span><span class="mi">24</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
     <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
@@ -1057,6 +1028,15 @@ Accuracy of the network on the test images: 91 %
         <p class="prev-next-title">Introduction to PyTorch</p>
       </div>
     </a>
+    <a class="right-next"
+       href="abtesting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">A/B Testing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1089,7 +1069,7 @@ Accuracy of the network on the test images: 91 %
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Ryan Vaz
 </p>
 
   </div>
