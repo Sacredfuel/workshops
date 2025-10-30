@@ -2,11 +2,9 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: tsa-notebooks/components
 chapters:
-- file: tsa-notebooks/components
 - file: tsa-notebooks/stationarity
 - file: tsa-notebooks/movingavg
 - file: ml-notebooks/primer
 - file: ml-notebooks/classifier
-- file: ml-notebooks/abtesting
